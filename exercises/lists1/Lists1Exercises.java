@@ -1,19 +1,35 @@
 public class Lists1Exercises {
     /** Returns an IntList identical to L, but with
-      * each element incremented by x. L is not allowed
-      * to change. */
-    public static IntList incrList(IntList L, int x) {
+    * each element incremented by x. L is not allowed
+    * to change. */
+  public static IntList incrList(IntList L, int x) {
         /* Your code here. */
-        return L;        
+    IntList LL = new IntList(L.get(L.size()-1) + x,null);
+    int i = L.size()-2;
+    while (i != 0) {
+        LL = new IntList(L.get(i) + x, LL);
+        i--;
+    }
+    LL = new IntList(L.get(0) + x, LL);
+    return LL;
+          
     }
 
     /** Returns an IntList identical to L, but with
       * each element incremented by x. Not allowed to use
       * the 'new' keyword. */
-    public static IntList dincrList(IntList L, int x) {
-        /* Your code here. */
-        return L;
-    }
+  public static IntList dincrList(IntList L, int x) {
+      /* Your code here. */
+      IntList R = L;
+      while (R.rest != null) {
+          R.first = R.first + x;
+          R = R.rest;
+      }
+      R.first = R.first + x;
+    
+      return L;      
+        
+      }
 
     public static void main(String[] args) {
         IntList L = new IntList(5, null);
